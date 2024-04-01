@@ -747,12 +747,12 @@ class Hypnodensity(object):
 
         dat = np.expand_dims(dat[:, :n_seg * ac_config.segsize], 0)
 
-        num_batches = np.int(
+        num_batches = int(
             np.ceil(np.divide(dat.shape[2], (ac_config.eval_nseg_atonce * ac_config.segsize), dtype='float')))
 
         # print(f'\n---------------\ndat.shape[2] = {dat.shape[2]}\nnum_batches = {num_batches}\n--------------------\n')
 
-        # n_extra = np.int(np.ceil(num_batches * ac_config.eval_nseg_atonce * ac_config.segsize) % dat.shape[2])
+        # n_extra = int(np.ceil(num_batches * ac_config.eval_nseg_atonce * ac_config.segsize) % dat.shape[2])
         n_extra = num_batches * ac_config.eval_nseg_atonce * ac_config.segsize - dat.shape[2]
 
         # fill remaining (n_extra) values with the mean value of each column
